@@ -2,6 +2,7 @@
     <div class="hello">
         <h1 @click="msg=changeMsg()">{{ msg }}</h1>
         <newTitle :value="msg" />
+        <el-button>这回有样式了吗</el-button>
     </div>
 </template>
 
