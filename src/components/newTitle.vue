@@ -8,15 +8,18 @@ import Component from "vue-class-component";
 @Component({
     name: "newTitle",
     props: {
-        value: { // 变量名
+        value: {
+            // 变量名
             type: String, // 类型
             required: true // 是否必填
         },
         age: Number
     }, // 父组件传过来的值
-    watch:{ // 监听父组件传来的变量
-        value(val): void{
-            console.log(val)
+    watch: {
+        // 监听父组件传来的变量
+        value(val: String): void {
+            // 入参和返回值都需要定义类型 void为没有返回值
+            console.log(val);
         }
     }
 })
