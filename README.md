@@ -73,11 +73,13 @@ function eat(type:String):String{
 
 #### 字符串类型 (Array)
 
-#### 各种JavaScript里的各种类型等等……
+#### JavaScript里的各种类型等等……
 
 #### 元组类型 (tuple) 数组的一种 可以设置多种类型的数组
 
-##### let arr: [number, string] = [1, 'ss']; // 对应的左边几个，右边就几个 
+``` bash
+let arr: [number, string] = [1, 'ss']; // 对应的左边几个，右边就几个 
+```
 
 #### 枚举类型 (enum) 用于声明一种新的“数据类型”
 
@@ -106,6 +108,8 @@ aaa=123 // 错误 never类型数据不能被赋值
 
 #### 声明多种类型的变量 (用于不确认类型时使用)
 
-##### let aaa:any || let aaa:String|Number // 尽量使用第二种 声明一个为字符串或者数值型的变量 如果变量是dom元素使用第一种方式声明变量
+``` bash
+let aaa:any || let aaa:String|Number // 尽量使用第二种 声明一个为字符串或者数值型的变量 如果变量是dom元素使用第一种方式声明变量
+```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
