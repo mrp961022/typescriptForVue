@@ -4,6 +4,7 @@
     "module": "es2015",
     "moduleResolution": "node",
     "target": "es5",
+    // "outDir": "./", // 导出目录
     "allowSyntheticDefaultImports": true,
     "declaration": false,
     "noImplicitAny": true,
@@ -16,5 +17,13 @@
       "es2016",
       "dom"
     ]
-  }
+  },
+  // 增加忽略目录，报错信息提示的那些目录和文件
+  "exclude": [
+    "config",
+    "public",
+    "dist",
+    "build",
+    "postcss.config.js"
+  ]
 }
