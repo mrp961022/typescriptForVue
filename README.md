@@ -474,5 +474,250 @@ d.eat();
 var e = new B.Dog('小狼狗')
 e.eat();
 ```
+#### 装饰器
+#### 一种方法 一种特殊类型的声明 可以放在类、属性、方法中拓展类、属性、方法 可以修改类的行为
+#### 使用方法 写在类、属性、方法前 用于修饰或拓展类、属性、方法
+#### es7标准特性之一
 
+##### 类装饰器
+> 普通装饰器
+``` bash
+function logClass(params: any) { // 装饰器
+  // console.log(params); // params 当前类
+  params.prototype.apiUrl = 'xxx'  // 动态拓展的属性
+  params.prototype.run = function () {
+    console.log('我是一个run方法') // 拓展方法
+  }
+}
+@logClass  // 装饰器写在那个类前 就是装饰那个类
+class HttpClient {
+  constructor() {
+
+  }
+  getData() {
+
+  }
+}
+var http: any = new HttpClient();
+console.log(http.apiUrl);
+http.run();
+```
+> 装饰器工厂
+``` bash
+function logClass(params: String) { // 装饰器
+  return function (target: any) {
+    // console.log(target);  // 拓展的类
+    // console.log(params);  // 传参
+    target.prototype.apiUrl = params;
+
+  }
+}
+@logClass('http://www.baidu.com')
+class HttpClient {
+  constructor() {
+
+  }
+  getData() {
+
+  }
+}
+
+var http: any = new HttpClient();
+console.log(http.apiUrl)
+```
+> 类装饰器重载构造函数
+``` bash
+function logClass(target: any) { // 装饰器
+  console.log(target)
+  return class extends target {
+    apiUrl: any; // 类装饰器重载以前的类
+    getData() {
+      this.apiUrl = this.apiUrl + '---'
+      console.log(this.apiUrl)
+    }
+  }
+}
+@logClass
+
+class HttpClient {
+  apiUrl: String | undefined;
+  constructor() {
+    this.apiUrl = '我是构造函数apiurl'
+  }
+  getData() {
+    console.log(this.apiUrl)
+  }
+}
+
+var a = new HttpClient;
+a.getData();
+```
+##### 属性装饰器 接收两个参数 1.构造器函数 2.成员名称
+
+``` bash
+function logClass(params: String) { // 类装饰器
+  return function (target: any) {
+    console.log(target);  // 拓展的类
+    console.log(params);  // 传参
+  }
+}
+
+// 属性装饰器
+function logProperty(params: any) {
+  return function (target: any, attr: any) {
+    // console.log(target);
+    target[attr] = params;
+    // console.log(attr)
+  }
+}
+@logClass('xxx')
+class HttpClient {
+  @logProperty('http://baidu.com')  // 装饰器写在那个属性前面就修饰谁
+  public url: any | undefined;
+  @logProperty('老王')
+  public name: String | undefined;
+  constructor() {
+
+  }
+  getData() {
+    console.log(this.name)
+  }
+}
+
+var a = new HttpClient();
+a.getData();
+```
+
+##### 方法装饰器
+##### 接收三个参数 1.原型对象 2.方法名称 3.方法描述
+##### 拓展当前类的属性和方法
+
+``` bash
+function get(params:any){
+  return function(target:any,methods:any,desc:any){
+    console.log(target);
+    console.log(methods);
+    console.log(desc);
+    target.apiUrl='xxx';
+    target.run=function(){  // 扩展当前类的属性和方法
+      console.log('run');
+    }
+  }
+}
+
+class HttpClient {
+  public url: any | undefined;
+  constructor() {
+
+  }
+  @get('http://www.baidu.com')
+  getData() {
+    console.log(this.url)
+  }
+}
+
+var http: any = new HttpClient()
+console.log(http.apiUrl)
+http.run();
+```
+> 修改装饰器方法
+
+``` bash
+function get(params: any) {
+  return function (target: any, methods: any, desc: any) {
+    // 修改当前方法 把装饰器的方法传入参数改为String类型
+    // 1.保存当前方法
+    var oMthod = desc.value
+    desc.value = function (...args: any[]) {
+      args = args.map((value) => {
+        return String(value)
+      })
+      oMthod.apply(this, args) // 对象冒充
+    }
+  }
+}
+
+class HttpClient {
+  public url: any | undefined;
+  constructor() {
+
+  }
+  @get('http://www.baidu.com')
+  getData(...args: any[]) {
+    console.log('我是getData的方法')
+    console.log(args)
+  }
+}
+
+var http: any = new HttpClient();
+http.getData(111, 111, 222)
+```
+> 方法参数装饰器  不常用
+``` bash
+function logParams(params: any) {
+  return function (target: any, methodName: any, paramsIndex: any) {
+    target.apiUrl = params;
+  }
+}
+
+class HttpClient {
+  public url: any | undefined;
+  constructor() {
+
+  }
+  getData(@logParams('xxxx') uuid: any) {  // 参数装饰器
+    console.log('我是getData的方法')
+  }
+}
+var http:any =new HttpClient();
+http.getData(123456)
+console.log(http.apiUrl)
+```
+#### 各种装饰器的执行顺序
+#### 属性>>方法/参数>>方法>>类   如果有多个同类型装饰器，从后往前执行
+``` bash
+function logClass1(target: any) { // 装饰器
+  return function (target: any) {
+    console.log('类装饰器')
+  }
+}
+function logClass2(target: any) { // 装饰器
+  return function (target: any) {
+    console.log('类装饰器')
+  }
+}
+function logAttribute(params?: String) { // 装饰器
+  return function (target: any, attrName: any) {
+    console.log('属性装饰器')
+  }
+}
+function logMthods(params?: String) { // 装饰器
+  return function (target: any, attrName: any, desc: any) {
+    console.log('方法装饰器')
+  }
+}
+function logParams1(params?: String) { // 装饰器
+  return function (target: any, attrName: any, desc: any) {
+    console.log('方法参数装饰器1')
+  }
+}
+function logParams2(params?: String) { // 装饰器
+  return function (target: any, attrName: any, desc: any) {
+    console.log('方法参数装饰器2')
+  }
+}
+@logClass1('http://www.baidu.com')
+@logClass2('xxx')
+class HttpClient {
+  @logAttribute()
+  public apiUrl: String | undefined;
+  constructor() {
+  }
+  @logMthods()
+  getData(@logParams1() attr1: any, @logParams2() attr2: any) {
+
+  }
+}
+var http: any = new HttpClient();
+```
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
