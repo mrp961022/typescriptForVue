@@ -9,7 +9,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router/index.ts'
+import router from './router/index'
 import * as element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 // export default element
