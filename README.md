@@ -49,7 +49,7 @@ function eat(type){
 ``` bash
 
 # 定义变量
-var(let) nowDate:Date = new Date();
+var(let) nowDate:date = new Date();
 
 # 变量赋值 只能赋值定义的类型数据
 nowDate = 1 //错误
@@ -59,7 +59,7 @@ nowDate = new Date('2020-01-01') //正确
 let dom: any = document.querySelector(".hello .el-table__body-wrapper");
 
 # 声明方法 需要定义入参及返回值的类型，如果没有返回值类型就是void
-function eat(type:String):String{
+function eat(type:string):string{
     return type+'meat'
 }
 
@@ -67,9 +67,9 @@ function eat(type:String):String{
 
 ### typescript的各种数据类型
 
-#### 布尔类型 (Boolean)
+#### 布尔类型 (boolean)
 
-#### 数值类型 (Number)
+#### 数值类型 (number)
 
 #### 字符串类型 (Array)
 
@@ -78,7 +78,7 @@ function eat(type:String):String{
 #### 元组类型 (tuple) 数组的一种 可以设置多种类型的数组
 
 ``` bash
-let arr: [Number, Number] = [1, 'ss']; // 对应的左边几个，右边就几个 
+let arr: [number, number] = [1, 'ss']; // 对应的左边几个，右边就几个 
 ```
 
 #### 枚举类型 (enum) 用于声明一种新的“数据类型”
@@ -109,7 +109,7 @@ aaa=123 // 错误 never类型数据不能被赋值
 #### 声明多种类型的变量 (用于不确认类型时使用)
 
 ``` bash
-let aaa:any || let aaa:String|Number // 尽量使用第二种 声明一个为字符串或者数值型的变量 如果变量是dom元素使用第一种方式声明变量
+let aaa:any || let aaa:string|number // 尽量使用第二种 声明一个为字符串或者数值型的变量 如果变量是dom元素使用第一种方式声明变量
 ```
 
 #### 入参的约束 属性接口 interface
@@ -118,9 +118,9 @@ let aaa:any || let aaa:String|Number // 尽量使用第二种 声明一个为字
 
 ``` bash 
 interface FullName{
-  firstName:String; // 注意分号结束  不是对象
-  secondName:String;
-  age?: Number; // 可选属性 可以写 也可以不写
+  firstName:string; // 注意分号结束  不是对象
+  secondName:string;
+  age?: number; // 可选属性 可以写 也可以不写
 }
 function printLabel(name:FullName){
   // 必须传入对象，对象必须有firstname，secondname
@@ -140,11 +140,11 @@ printLabel(obj) // 错误 缺少 secondName
 ``` bash 
 
 interface encrypt {
-  (key: Number, value: Number): Number; // 约束一个方法 传入两个Number，返回一个Number
+  (key: number, value: number): number; // 约束一个方法 传入两个number，返回一个number
 }
 
-var md5: encrypt = function (key: Number, value: Number): Number {
-  // 定义encrypt约束时 传入必须两个Number 返回值必须写，必须为Number
+var md5: encrypt = function (key: number, value: number): number {
+  // 定义encrypt约束时 传入必须两个number 返回值必须写，必须为number
   alert(key + value)
   return key + value;
 }
@@ -158,11 +158,11 @@ md5('name', 'zhangsan')
 ``` bash 
 
 interface userArray {
-  [index: Number]: Number;
+  [index: number]: number;
 }
-var Array1: userArray = ['21', '22'] // 约束为userArray类型，索引为数值型，值为Number
+var Array1: userArray = ['21', '22'] // 约束为userArray类型，索引为数值型，值为number
 console.log(Array1)
-var obj1: userArray = { 1: 'name', 2: 'age' } // 对象为这种类型时 索引为数值，值为Number
+var obj1: userArray = { 1: 'name', 2: 'age' } // 对象为这种类型时 索引为数值，值为number
 console.log(obj1)
 
 ```
@@ -172,16 +172,16 @@ console.log(obj1)
 ``` bash 
 
 interface Animal {
-  name: Number;
-  eat(str: Number): void;
+  name: number;
+  eat(str: number): void;
 }
 
 class Dog implements Animal {
-  public name: Number;
-  constructor(name: Number) {
+  public name: number;
+  constructor(name: number) {
     this.name = name;
   };
-  eat(food:String) {
+  eat(food:string) {
     console.log(this.name + '吃' + food)
   }
 }
@@ -199,18 +199,18 @@ interface Anmial {
   eat(): void;
 }
 interface Person extends Anmial {
-  work(workValue:Number): void;
+  work(workValue:number): void;
 }
 
 class Web implements Person {
-  name: Number;
-  constructor(name: Number) {
+  name: number;
+  constructor(name: number) {
     this.name = name;
   }
   eat() {
     console.log(this.name+'吃馒头')
    };
-  work(workValue:Number) { // 如果接口有参数可以不写，但是如果接口没有参数不能写参数
+  work(workValue:number) { // 如果接口有参数可以不写，但是如果接口没有参数不能写参数
     console.log(this.name+"在"+workValue)
   }
 }
@@ -231,7 +231,7 @@ function getData<T>(value: T): T { // T表示泛型  具体什么类型调用方
   return value;
 }
 
-getData<Number>(123) // 定义类型为Number 只能传入Number
+getData<number>(123) // 定义类型为number 只能传入number
 
 ```
 
@@ -240,11 +240,11 @@ getData<Number>(123) // 定义类型为Number 只能传入Number
 ``` bash 
 
 class MinClass {
-  public list: Number[] = [];
-  add(num: Number) { // 只能传入Number类型
+  public list: number[] = [];
+  add(num: number) { // 只能传入number类型
     this.list.push(num)
   }
-  min(): Number {
+  min(): number {
     var minNum = this.list[0];
     for (var i = 1; i < this.list.length; i++) {
       if (minNum > this.list[i]) {
@@ -270,7 +270,7 @@ alert(m.min())
 
 class MinClass<T>{
   public list: T[] = [];
-  add(num: T): void { // 只能传入Number类型
+  add(num: T): void { // 只能传入number类型
     this.list.push(num)
   }
   min(): T {
@@ -284,7 +284,7 @@ class MinClass<T>{
   }
 }
 
-var m = new MinClass<Number>();  // 实例化类，并且指定类的泛型Number 也可写成<Number|Number>可以为Number或Number泛型
+var m = new MinClass<number>();  // 实例化类，并且指定类的泛型number 也可写成<number|number>可以为number或number泛型
 
 m.add(21)
 m.add(23)
@@ -304,7 +304,7 @@ var setData: configFn = function <T>(a: T) {
   return a;
 }
 
-alert(setData<String>('老王'))
+alert(setData<string>('老王'))
 ```
 > 第二种
 ``` bash 
@@ -315,7 +315,7 @@ function getData<T>(a: T) {
   return a;
 }
 
-var myGetData: configFn<String> = getData;
+var myGetData: configFn<string> = getData;
 
 myGetData(111) // 错误
 myGetData('111') // 正确
@@ -324,12 +324,12 @@ myGetData('111') // 正确
 
 ``` bash 
 class ActiveCate {
-  title: String | undefined; // 可以不赋值
-  desc: String | undefined;
-  status: Number | undefined;
+  title: string | undefined; // 可以不赋值
+  desc: string | undefined;
+  status: number | undefined;
 }
 class MySqlDB {
-  book(info: ActiveCate): Boolean { // 可以用类作为参数来约束数据类型
+  book(info: ActiveCate): boolean { // 可以用类作为参数来约束数据类型
     console.log(info)
     return true;
   }
@@ -346,17 +346,17 @@ db.book(u)
 
 ``` bash
 class ActiveCate {
-  title: String | undefined;
-  desc: String | undefined;
-  status: Number | undefined;
-  constructor(title: String, desc: String, status?: Number) {
+  title: string | undefined;
+  desc: string | undefined;
+  status: number | undefined;
+  constructor(title: string, desc: string, status?: number) {
     this.title = title;
     this.status = status;
     this.desc = desc
   }
 }
 class MySqlDB<T>{
-  update(info: T, id: Number): Boolean {
+  update(info: T, id: number): boolean {
     console.log(info)
     console.log(id);
     return true;
@@ -372,10 +372,10 @@ db.update(a, 222);
 
 ``` bash
 interface DBI<T> {
-  add(info: T): Boolean;
-  update(info: T, id: Number): Boolean;
-  delete(id: Number): Boolean;
-  get(id: Number): any[];
+  add(info: T): boolean;
+  update(info: T, id: number): boolean;
+  delete(id: number): boolean;
+  get(id: number): any[];
 }
 ```
 > 定义一个mysql类
@@ -385,17 +385,17 @@ class MySqlDB<T> implements DBI<T>{  // 要实现泛型接口 类也应该是泛
   constructor() {
     console.log('数据库建立连接')
   }
-  add(info: T): Boolean {
+  add(info: T): boolean {
     console.log(info)
     return true;
   };
-  update(info: T, id: Number): Boolean {
+  update(info: T, id: number): boolean {
     throw new Error("Method not implemented.");
   };
-  delete(id: Number): Boolean {
+  delete(id: number): boolean {
     throw new Error("Method not implemented.");
   };
-  get(id: Number): any[] {
+  get(id: number): any[] {
     throw new Error("Method not implemented.");
   };
 }
@@ -404,8 +404,8 @@ class MySqlDB<T> implements DBI<T>{  // 要实现泛型接口 类也应该是泛
 
 ``` bash
 class User {
-  username: String | undefined;
-  password: String | undefined;
+  username: string | undefined;
+  password: string | undefined;
 }
 
 var u = new User();
@@ -428,7 +428,7 @@ getData()
 ```
 > db.js
 ``` bash
-var dburl:String="xxxxx";
+var dburl:string="xxxxx";
 export function getData(){ // 在浏览器中会报错，需要babelrc编译后使用，
     console.log('获取数据库的返回值')
     return [
@@ -445,13 +445,13 @@ export function getData(){ // 在浏览器中会报错，需要babelrc编译后�
 ``` bash
 namespace A {  // namespace 命名空间，避免命名冲突 
   interface Animal {
-    name: String;
+    name: string;
     eat(): void;
   }
 
   export class Dog implements Animal { // 私有的，需要export暴露出来
-    name: String;
-    constructor(theName: String) {
+    name: string;
+    constructor(theName: string) {
       this.name = theName;
     }
     eat() {
@@ -459,8 +459,8 @@ namespace A {  // namespace 命名空间，避免命名冲突
     }
   }
   export class Cat implements Animal {
-    name: String;
-    constructor(theName: String) {
+    name: string;
+    constructor(theName: string) {
       this.name = theName;
     }
     eat() {
@@ -504,7 +504,7 @@ http.run();
 ```
 > 装饰器工厂
 ``` bash
-function logClass(params: String) { // 装饰器
+function logClass(params: string) { // 装饰器
   return function (target: any) {
     // console.log(target);  // 拓展的类
     // console.log(params);  // 传参
@@ -540,7 +540,7 @@ function logClass(target: any) { // 装饰器
 @logClass
 
 class HttpClient {
-  apiUrl: String | undefined;
+  apiUrl: string | undefined;
   constructor() {
     this.apiUrl = '我是构造函数apiurl'
   }
@@ -555,7 +555,7 @@ a.getData();
 ##### 属性装饰器 接收两个参数 1.构造器函数 2.成员名称
 
 ``` bash
-function logClass(params: String) { // 类装饰器
+function logClass(params: string) { // 类装饰器
   return function (target: any) {
     console.log(target);  // 拓展的类
     console.log(params);  // 传参
@@ -575,7 +575,7 @@ class HttpClient {
   @logProperty('http://baidu.com')  // 装饰器写在那个属性前面就修饰谁
   public url: any | undefined;
   @logProperty('老王')
-  public name: String | undefined;
+  public name: string | undefined;
   constructor() {
 
   }
@@ -625,12 +625,12 @@ http.run();
 ``` bash
 function get(params: any) {
   return function (target: any, methods: any, desc: any) {
-    // 修改当前方法 把装饰器的方法传入参数改为String类型
+    // 修改当前方法 把装饰器的方法传入参数改为string类型
     // 1.保存当前方法
     var oMthod = desc.value
     desc.value = function (...args: any[]) {
       args = args.map((value) => {
-        return String(value)
+        return string(value)
       })
       oMthod.apply(this, args) // 对象冒充
     }
@@ -686,22 +686,22 @@ function logClass2(target: any) { // 装饰器
     console.log('类装饰器')
   }
 }
-function logAttribute(params?: String) { // 装饰器
+function logAttribute(params?: string) { // 装饰器
   return function (target: any, attrName: any) {
     console.log('属性装饰器')
   }
 }
-function logMthods(params?: String) { // 装饰器
+function logMthods(params?: string) { // 装饰器
   return function (target: any, attrName: any, desc: any) {
     console.log('方法装饰器')
   }
 }
-function logParams1(params?: String) { // 装饰器
+function logParams1(params?: string) { // 装饰器
   return function (target: any, attrName: any, desc: any) {
     console.log('方法参数装饰器1')
   }
 }
-function logParams2(params?: String) { // 装饰器
+function logParams2(params?: string) { // 装饰器
   return function (target: any, attrName: any, desc: any) {
     console.log('方法参数装饰器2')
   }
@@ -710,7 +710,7 @@ function logParams2(params?: String) { // 装饰器
 @logClass2('xxx')
 class HttpClient {
   @logAttribute()
-  public apiUrl: String | undefined;
+  public apiUrl: string | undefined;
   constructor() {
   }
   @logMthods()
