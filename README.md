@@ -21,7 +21,74 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
+## 操作步骤
+### 创建vue项目 vue init webpack **** 然后根据需要enter
+### 安装需要的依赖 cnpm i typescript ts-loader@^3.5.0 --save-dev
+### 修改项目配置 增加ts-loader build/webpack.base.conf.js
+``` bash
+// resolve
+extensions: ['.js', '.vue', '.json', '.ts']
+// module>rules
+{
+    test: /\.(tsx|ts)?$/, // tsloader
+    loader: 'ts-loader',
+    exclude: /node_modules/,
+    options: {
+        appendTsSuffixTo: [/\.vue$/],
+    }
+}
+```
+### 在src根目录新增vue-shims.d.ts 内容如下
+``` bash
+declare module "*.vue" {
+    import Vue from "vue"
+    export default Vue
+}
+```
+### 根目录创建typescript的配置文件tsconfig.json 可以在根目录使用tsc --init生成 配置内容我不太懂
+``` bash
+{
+  "compilerOptions": {
+    "strict": true,
+    "module": "es2015",
+    "moduleResolution": "node",
+    "target": "es5",
+    // "outDir": "./", // 导出目录
+    "allowSyntheticDefaultImports": true,
+    "declaration": false,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "lib": [
+      "es2017",
+      "es2016",
+      "dom"
+    ]
+  },
+  "include": [ // 设置哪部分代码需要进行ts转义
+    "src/**/*"
+  ]
+}
 
+```
+### main.js => main.ts 修改build/webpack.base.conf.js中的entry中的main.js => main.ts
+### 修改App.vue <script lang="ts">
+### 修改main.ts中App组件的引入带上.vue
+### 安装vue官方推荐插件 vue-class-component cnpm i vue-class-component --save
+### 项目根目录增加一个postcss.config.js文件 ts默认不支持css样式引入 需要这个文件
+``` bash
+module.exports = {
+    plugins: {
+        'autoprefixer': {
+            browsers: 'last 5 version'
+        }
+    }
+}
+```
+### 修改vue文件 详见HelloWord.vue
+    
 ## 变量声明
 
 ### javascript
