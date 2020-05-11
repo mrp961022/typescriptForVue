@@ -1,5 +1,8 @@
 <template>
-    <div @click="sayHello" title="点击alert父组件传来的字符">{{ msg }}</div>
+    <div>
+        <div @click="sayHello" title="点击alert父组件传来的字符">{{ msg }}</div>
+        <p>{{getComputedMsg}}</p>
+    </div>
 </template>
 <script lang="ts">
 import Vue from "vue";
@@ -29,6 +32,10 @@ export default class newTitle extends Vue {
     // 组件方法也可以直接声明为实例的方法
     sayHello(): void {
         alert(this.$props.value);
+    }
+     // 计算属性 computed
+    get getComputedMsg(): string {
+        return "abc";
     }
 }
 </script>
