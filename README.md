@@ -170,7 +170,7 @@ let arr3: [string, number, boolean] = ["1", 2, true] // 可以指定数组中每
 enum Flag { success = 1, error = -1 }
 let f = Flag.success;
 let l = Flag.error;
-enum Color { red, blue, orange } // 没有赋值默认为索引值
+enum Color { red, blue, orange } // 没有赋值默认为索引值 如果其中有一个为数字的话 后面的元素在他基础上递增
 let clr = Color.blue;
 ```
 
