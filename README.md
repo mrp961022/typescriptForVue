@@ -45,7 +45,7 @@ declare module "*.vue" {
     export default Vue
 }
 ```
-### 根目录创建typescript的配置文件tsconfig.json 可以在根目录使用tsc --init生成 配置内容我不太懂
+### 项目根目录创建typescript的配置文件tsconfig.json 可以在根目录使用tsc --init生成 配置内容我不太懂
 ``` bash
 {
   "compilerOptions": {
