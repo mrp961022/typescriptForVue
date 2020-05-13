@@ -1,0 +1,16 @@
+{
+    "type": "Feature",
+    "properties": {
+        "adcode": 330902,
+        "name": "定海区",
+        "center": [122.108496, 30.016423],
+        "centroid": [122.109143, 30.07103],
+        "childrenNum": 0,
+        "level": "district",
+        "parent": {
+            "adcode": 330900
+        },
+        "subFeatureIndex": 0,
+        "acroutes": [100000, 330000, 330900]
+    }
+}

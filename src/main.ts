@@ -10,9 +10,13 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router/index'
+import axios,{AxiosInstance} from 'axios'
 import * as element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 // export default element
+Vue.use(v=>{
+  v.prototype.$axios=axios
+})
 Vue.use(element)
 Vue.config.productionTip = false
 /* eslint-disable no-new */
@@ -22,3 +26,8 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+declare module 'Vue/types/vue'{
+  interface Vue{
+    $axios:AxiosInstance
+  }
+}

@@ -40,6 +40,9 @@ export default class Hello extends Vue {
     // 生命周期直接写就行
     mounted() {
         this.pushBefore();
+        this.$axios.get('static/json/county.json').then(x=>{
+            console.log(x.data.properties)
+        })
         let dom: any = document.querySelector(".hello .el-table__body-wrapper"); // 注意不论在哪里，一定要定义类型，如果是dom就定义为any
         dom.addEventListener("scroll", () => {
             const scrollDistance =
