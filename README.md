@@ -156,9 +156,11 @@ function eat(type:string):string{
 
 #### 数值类型 (number)
 
-#### 字符串类型 (Array)
+#### 字符串类型 (string)
 
 #### JavaScript里的各种类型等等……
+
+#### typescript声明类型需要小写 声明数组类型要大写
 
 #### 元组类型 (tuple) 数组的一种 可以设置多种类型的数组
 
