@@ -88,6 +88,24 @@ module.exports = {
 }
 ```
 ### 修改vue文件 详见HelloWord.vue
+``` bash
+<script lang="ts">
+import Vue from "vue";
+import Component from "vue-class-component";  // vue推出的一种转为typescript的依赖
+// @Component 修饰符注明了此类为一个 Vue 组件 装饰器
+import newTitle from "./newTitle.vue";
+@Component({
+    // name props watch components
+    name: "hello",
+    components: {
+        newTitle
+    }
+})
+export default class Hello extends Vue {
+  // 变量 方法 生命周期 计算属性
+}
+<script>
+```
     
 ## 变量声明
 
