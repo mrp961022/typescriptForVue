@@ -47,10 +47,10 @@ export default class Hello extends Vue {
         ajax({
             type: "get",
             url: "static/json/county.json", // url接口
-            data: "",
+            data: [{name:1}],
             dataType: "JSON"
-        }).then((data)=>{
-            console.log(data)
+        }).then((returnData)=>{
+            console.log(returnData)
         })
         let dom: any = document.querySelector(".hello .el-table__body-wrapper"); // 注意不论在哪里，一定要定义类型，如果是dom就定义为any
         dom.addEventListener("scroll", () => {

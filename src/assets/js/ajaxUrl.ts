@@ -1,14 +1,18 @@
 interface Config {
     type: string;
     url: string;
-    data?: string;
+    data?: dataArr;
     dataType: string;
+}
+interface dataArr{
+    [index:number]:object // 定义一个对象数组类型
 }
 export function ajax(config: Config) {
     return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest();
         xhr.open(config.type, config.url, true);
-        xhr.send(config.data);
+        xhr.send()
+        console.log(config.data)
         xhr.onreadystatechange = function () {
             // if (xhr.readyState == 4 && xhr.status == 200) {
             //     // // console.log("成功")
