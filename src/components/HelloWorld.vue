@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Component, { mixins } from "vue-class-component";
+import Component from "vue-class-component";
 console.log(Component);
 // @Component 修饰符注明了此类为一个 Vue 组件
 import newTitle from "./newTitle.vue";
