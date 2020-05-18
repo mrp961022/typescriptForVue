@@ -8,11 +8,11 @@ interface dataArr{
     [index:number]:object // 定义一个对象数组类型
 }
 export function ajax(config: Config) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve:(value:string)=>void, reject) => { // 定义返回值类型为字符型
         let xhr = new XMLHttpRequest();
         xhr.open(config.type, config.url, true);
         xhr.send()
-        console.log(config.data)
+        // console.log(config.data)
         xhr.onreadystatechange = function () {
             // if (xhr.readyState == 4 && xhr.status == 200) {
             //     // // console.log("成功")

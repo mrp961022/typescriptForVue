@@ -20,7 +20,7 @@ import Component from "vue-class-component";
     }, // 父组件传过来的值
     watch: {
         // 监听父组件传来的变量
-        value(val: String): void {
+        value(val: string): void {
             // 入参和返回值都需要定义类型 void为没有返回值
             console.log(val);
         }
