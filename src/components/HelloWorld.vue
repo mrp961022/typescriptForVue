@@ -49,8 +49,7 @@ export default class Hello extends Vue {
         ajax({
             type: "get",
             url: "static/json/county.json", // url接口
-            data: [{ name: 1 }],
-            dataType: "JSON"
+            data:`name=${111}&age=${11}`
         }).then(returnData => {
             this.allData = JSON.parse(returnData);
             console.log(this.allData);
