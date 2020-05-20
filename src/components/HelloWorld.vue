@@ -42,27 +42,16 @@ export default class Hello extends Vue {
     // 生命周期直接写就行
     mounted() {
         this.pushBefore();
-        // this.$axios.get('static/json/county.json').then(x=>{
-        //     console.log(x.data.properties)
-        // })
         // ajax({
         //     type: "get",
-        //     url: "static/json/county.json", // url接口
-        //     data:`name=${111}&age=${11}`
-        // }).then(returnData => {
-        //     this.allData = JSON.parse(returnData);
-        //     console.log(this.allData);
-        // });
-        ajax({
-            type: "get",
-            url: "http://a.itying.com/api/productlist"
-        })
-            .then(response => {
-                console.log(response);
-            })
-            .catch(reject => {
-                console.error(reject);
-            });
+        //     url: "http://a.itying.com/api/productlist"
+        // })
+        //     .then(response => {
+        //         console.log(response);
+        //     })
+        //     .catch(reject => {
+        //         console.error(reject);
+        //     });
         let dom: any = document.querySelector(".hello .el-table__body-wrapper"); // 注意不论在哪里，一定要定义类型，如果是dom就定义为any
         dom.addEventListener("scroll", () => {
             const scrollDistance =
@@ -84,23 +73,30 @@ export default class Hello extends Vue {
     pushBefore(): void {
         // void就是没有return返回值
         this.isSearch = false;
-        this.data = [
-            { name: 1, age: 2, sex: "male", num: "0001", class: "1年3班" },
-            { name: 2, age: 3, sex: "feMale", num: "0002", class: "1年2班" },
-            { name: 1, age: 2, sex: "male", num: "0003", class: "1年3班" },
-            { name: 2, age: 3, sex: "male", num: "0004", class: "1年2班" },
-            { name: 1, age: 2, sex: "feMale", num: "0005", class: "1年3班" },
-            { name: 2, age: 3, sex: "feMale", num: "0006", class: "1年3班" },
-            { name: 1, age: 2, sex: "male", num: "0007", class: "1年3班" },
-            { name: 2, age: 3, sex: "feMale", num: "0008", class: "1年4班" },
-            { name: 1, age: 2, sex: "male", num: "0009", class: "1年3班" },
-            { name: 2, age: 3, sex: "male", num: "0010", class: "1年3班" },
-            { name: 1, age: 2, sex: "feMale", num: "0011", class: "1年3班" },
-            { name: 2, age: 3, sex: "male", num: "0012", class: "1年1班" }
-        ];
+        this.searchData(true);
+    }
+    searchData(isSearchFise: boolean) {
+        if (isSearchFise) {
+            this.data = [];
+        }
+        ajax({
+            type: "get",
+            url: "static/json/county.json" // url接口
+        })
+            .then(response => {
+                let data = JSON.parse(response).data;
+                if (isSearchFise) {
+                    this.data = data;
+                } else {
+                    this.data = this.data.concat(data);
+                }
+            })
+            .catch(reject => {
+                console.error(reject);
+            });
     }
     query(): void {
-        this.data = this.data.concat(this.data);
+        this.searchData(false);
     }
 }
 </script>

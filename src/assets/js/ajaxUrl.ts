@@ -23,7 +23,7 @@ export function ajax(config: Config) {
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4) {
                 if (xhr.status == 200) {
-                    resolve(JSON.parse(xhr.responseText))
+                    resolve(xhr.responseText)
                 } else {
                     reject(xhr)
                 }

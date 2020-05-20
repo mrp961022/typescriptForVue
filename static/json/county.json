@@ -1,16 +1,16 @@
 {
-    "type": "Feature",
-    "properties": {
-        "adcode": 330902,
-        "name": "定海区",
-        "center": [122.108496, 30.016423],
-        "centroid": [122.109143, 30.07103],
-        "childrenNum": 0,
-        "level": "district",
-        "parent": {
-            "adcode": 330900
-        },
-        "subFeatureIndex": 0,
-        "acroutes": [100000, 330000, 330900]
-    }
+    "data":[
+        { "name": 1, "age": 2, "sex": "male", "num": "0001", "class": "1年3班" },
+        { "name": 2, "age": 3, "sex": "feMale", "num": "0002", "class": "1年2班" },
+        { "name": 1, "age": 2, "sex": "male", "num": "0003", "class": "1年3班" },
+        { "name": 2, "age": 3, "sex": "male", "num": "0004", "class": "1年2班" },
+        { "name": 1, "age": 2, "sex": "feMale", "num": "0005", "class": "1年3班" },
+        { "name": 2, "age": 3, "sex": "feMale", "num": "0006", "class": "1年3班" },
+        { "name": 1, "age": 2, "sex": "male", "num": "0007", "class": "1年3班" },
+        { "name": 2, "age": 3, "sex": "feMale", "num": "0008", "class": "1年4班" },
+        { "name": 1, "age": 2, "sex": "male", "num": "0009", "class": "1年3班" },
+        { "name": 2, "age": 3, "sex": "male", "num": "0010", "class": "1年3班" },
+        { "name": 1, "age": 2, "sex": "feMale", "num": "0011", "class": "1年3班" },
+        { "name": 2, "age": 3, "sex": "male", "num": "0012", "class": "1年1班" }
+    ]
 }
