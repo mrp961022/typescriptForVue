@@ -17,7 +17,6 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
-console.log(Component);
 // @Component 修饰符注明了此类为一个 Vue 组件
 import newTitle from "./newTitle.vue";
 import { ajax } from "../assets/js/ajaxUrl";
@@ -46,14 +45,24 @@ export default class Hello extends Vue {
         // this.$axios.get('static/json/county.json').then(x=>{
         //     console.log(x.data.properties)
         // })
+        // ajax({
+        //     type: "get",
+        //     url: "static/json/county.json", // url接口
+        //     data:`name=${111}&age=${11}`
+        // }).then(returnData => {
+        //     this.allData = JSON.parse(returnData);
+        //     console.log(this.allData);
+        // });
         ajax({
             type: "get",
-            url: "static/json/county.json", // url接口
-            data:`name=${111}&age=${11}`
-        }).then(returnData => {
-            this.allData = JSON.parse(returnData);
-            console.log(this.allData);
-        });
+            url: "http://a.itying.com/api/productlist"
+        })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(reject => {
+                console.error(reject);
+            });
         let dom: any = document.querySelector(".hello .el-table__body-wrapper"); // 注意不论在哪里，一定要定义类型，如果是dom就定义为any
         dom.addEventListener("scroll", () => {
             const scrollDistance =

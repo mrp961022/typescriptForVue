@@ -21,14 +21,12 @@ export function ajax(config: Config) {
         }
         xhr.send(config.data);
         xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                // // console.log("成功")
-                if (config.dataType == "json") {
-                    // // console.log(JSON.parse(xhr.responseText))
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    resolve(JSON.parse(xhr.responseText))
                 } else {
-                    // // console.log(xhr.responseText)
+                    reject(xhr)
                 }
-
             }
         }
     })
