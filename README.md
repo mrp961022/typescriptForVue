@@ -39,6 +39,7 @@ extensions: ['.js', '.vue', '.json', '.ts']
 }
 ```
 ### 在src根目录新增vue-shims.d.ts 内容如下
+### **.d.ts文件是ts语法的忽略项 有些静态引入的js可以在这里设置
 ``` bash
 declare module "*.vue" {
     import Vue from "vue"
