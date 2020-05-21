@@ -41,17 +41,20 @@ export default class Hello extends Vue {
     ];
     // 生命周期直接写就行
     mounted() {
-        this.pushBefore();
         // ajax({
         //     type: "get",
-        //     url: "http://a.itying.com/api/productlist"
+        //     url: "http://a.itying.com/api/productlist",
+        //     data:{name:1,age:2,books:['王','赵']},
+        //     contentType: "application/x-www-form-urlencoded;charset=UTF-8"  // post要加请求头 如果后端要的 application/json 可不转
         // })
         //     .then(response => {
-        //         console.log(response);
+        //         console.log(JSON.parse(response));
         //     })
         //     .catch(reject => {
         //         console.error(reject);
         //     });
+        // return;
+        this.pushBefore();
         let dom: any = document.querySelector(".hello .el-table__body-wrapper"); // 注意不论在哪里，一定要定义类型，如果是dom就定义为any
         dom.addEventListener("scroll", () => {
             const scrollDistance =
