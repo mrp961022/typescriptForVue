@@ -21,6 +21,7 @@ export function ajax(config: Config) {
         // }
         // urlData = urlData.slice(0,-1)
         let urlData: string = Object.entries(data).map(([key, val]) => `${key}=${val}`).join('&')
+        // 箭头函数不带大括号相当于{return ***}
         let xhr = new XMLHttpRequest();
         if (config.type.toLocaleLowerCase() == 'get') {
             xhr.open(config.type, `${config.url}${urlData ? "?" + urlData : ""}`, true);
