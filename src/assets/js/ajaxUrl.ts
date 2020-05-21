@@ -9,7 +9,7 @@ interface DataArr {
     [index: number]: object // 定义一个对象数组类型
 }
 interface DataObj {
-    [index: string]: number | string | Array<string|number> // 定义一个对象类型
+    [index: string]: number | string | Array<string|number> // 定义一个对象类型 参数为字符串数值或者数组类型
 }
 export function ajax(config: Config) {
     return new Promise((resolve: (value: string) => void, reject) => { // 定义返回值类型为字符型
