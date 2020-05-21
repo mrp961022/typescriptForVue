@@ -14,12 +14,13 @@ interface DataObj {
 export function ajax(config: Config) {
     return new Promise((resolve: (value: string) => void, reject) => { // 定义返回值类型为字符型
         let data = config.data || {}
-        let urlData: string = "";
-        for (var i in data) {
-            typeof data[i] == 'object' ? data[i] += '' : data[i]
-            urlData += `${i}=${data[i]}&`
-        }
-        urlData = urlData.slice(0,-1)
+        // let urlData: string = "";
+        // for (var i in data) {
+        //     typeof data[i] == 'object' ? data[i] += '' : data[i]
+        //     urlData += `${i}=${data[i]}&`
+        // }
+        // urlData = urlData.slice(0,-1)
+        let urlData: string = Object.entries(data).map(([key, val]) => `${key}=${val}`).join('&')
         let xhr = new XMLHttpRequest();
         if (config.type.toLocaleLowerCase() == 'get') {
             xhr.open(config.type, `${config.url}${urlData ? "?" + urlData : ""}`, true);
