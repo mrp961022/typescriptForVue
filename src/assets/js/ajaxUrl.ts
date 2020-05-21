@@ -19,7 +19,7 @@ export function ajax(config: Config) {
             typeof data[i] == 'object' ? data[i] += '' : data[i]
             urlData += `${i}=${data[i]}&`
         }
-        urlData = urlData.substr(0, urlData.length - 1) || urlData
+        urlData = urlData.slice(0,-1)
         let xhr = new XMLHttpRequest();
         if (config.type.toLocaleLowerCase() == 'get') {
             xhr.open(config.type, `${config.url}${urlData ? "?" + urlData : ""}`, true);
