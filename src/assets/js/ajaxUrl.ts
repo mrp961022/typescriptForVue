@@ -9,17 +9,17 @@ interface DataArr {
     [index: number]: object // 定义一个对象数组类型
 }
 interface DataObj {
-    [index: string]: number | string | Array<string|number> // 定义一个对象类型 参数为字符串数值或者数组类型
+    [index: string]: number | string | Array<string | number> // 定义一个对象类型 参数为字符串数值或者数组类型
 }
 export function ajax(config: Config) {
     return new Promise((resolve: (value: string) => void, reject) => { // 定义返回值类型为字符型
-        config.data ? config.data : config.data = {}
+        let data = config.data || {}
         let urlData: string = "";
-        for (var i in config.data) {
-            typeof config.data[i] == 'object' ? config.data[i] += '' : config.data[i]
-            urlData += `${i}=${config.data[i]}&`
+        for (var i in data) {
+            typeof data[i] == 'object' ? data[i] += '' : data[i]
+            urlData += `${i}=${data[i]}&`
         }
-        urlData ? urlData = urlData.substr(0, urlData.length - 1) : ""
+        urlData = urlData.substr(0, urlData.length - 1) || urlData
         let xhr = new XMLHttpRequest();
         if (config.type.toLocaleLowerCase() == 'get') {
             xhr.open(config.type, `${config.url}${urlData ? "?" + urlData : ""}`, true);
