@@ -13,7 +13,8 @@ interface DataObj {
 }
 export function ajax(config: Config) {
     return new Promise((resolve: (value: string) => void, reject) => { // 定义返回值类型为字符型
-        let data = config.data || {}
+        let data = config.data || {};
+        config.type == config.type.toLocaleLowerCase();
         // let urlData: string = "";
         // for (var i in data) {
         //     typeof data[i] == 'object' ? data[i] += '' : data[i]
@@ -31,8 +32,10 @@ export function ajax(config: Config) {
         }
         if (config.contentType) {
             xhr.setRequestHeader('Content-Type', config.contentType)
+            xhr.send(urlData);
+        } else {
+            config.type === 'get' ? xhr.send() : xhr.send(JSON.stringify(data));
         }
-        xhr.send(urlData);
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4) {
                 if (xhr.status == 200) {
