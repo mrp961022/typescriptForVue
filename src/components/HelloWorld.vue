@@ -1,8 +1,8 @@
 <template>
     <div class="hello">
         <h1 @click="msg=changeMsg()">{{ msg }}</h1>
-        <newTitle :value="msg" />
-        <el-button @click="pushBefore">这回有样式了吗</el-button>
+        <newTitle ref="newTitle" :value="msg" />
+        <el-button @click="pushBefore(true)">这回有样式了吗</el-button>
         <el-table border header-row-class-name="df-header-row" :data="data" height="500">
             <el-table-column
                 v-for="(item,index) in column"
@@ -54,7 +54,7 @@ export default class Hello extends Vue {
         //         console.error(reject);
         //     });
         // return;
-        this.pushBefore();
+        this.pushBefore(false);
         let dom: any = document.querySelector(".hello .el-table__body-wrapper"); // 注意不论在哪里，一定要定义类型，如果是dom就定义为any
         dom.addEventListener("scroll", () => {
             const scrollDistance =
@@ -73,10 +73,13 @@ export default class Hello extends Vue {
         return "我是改变过的msg";
     }
     // 鼠标点击事件
-    pushBefore(): void {
+    pushBefore(isChild: boolean): void {
         // void就是没有return返回值
         this.isSearch = false;
         this.searchData(true);
+        if (isChild) {
+            (this.$refs.newTitle as any).sayHello();
+        }
     }
     searchData(isSearchFise: boolean) {
         if (isSearchFise) {
